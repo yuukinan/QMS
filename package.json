@@ -1,0 +1,29 @@
+{
+  "name": "qms",
+  "version": "1.0.0",
+  "description": "ife: Question Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuukinan/QMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuukinan/QMS/issues"
+  },
+  "homepage": "https://github.com/yuukinan/QMS#readme",
+  "dependencies": {
+    "css-loader": "^0.23.1",
+    "ejs-loader": "^0.2.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.0.0",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
