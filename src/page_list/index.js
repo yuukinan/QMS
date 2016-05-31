@@ -47,6 +47,8 @@ var PageList = PageBaseView.extend({
       tempItem = new Item(data)
       container.append(tempItem.render().el)
     })
+
+    return this
   }
 })
 
