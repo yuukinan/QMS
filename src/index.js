@@ -1,3 +1,5 @@
+require('./index.styl')
+
 var ievent = require('./commons/ievent')
 var router = require('./commons/router')
 
