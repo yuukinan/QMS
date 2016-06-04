@@ -11,11 +11,18 @@ var Item = Backbone.View.extend({
   className: 'list-item',
 
   events: {
+    'click .delete' : 'itemDelete'
   },
 
   initialize: function (options) {
     this.model = new ItemModel(options)
+  },
 
+  itemDelete: function(){
+    var st=this.model.get("status")
+    if(st=="end")
+      alert("问卷已结束，不能删除")
+    else{alert("确认删除？")}
   },
 
   render: function () {
@@ -23,6 +30,7 @@ var Item = Backbone.View.extend({
 
     return this
   }
+
 })
 
 module.exports = Item

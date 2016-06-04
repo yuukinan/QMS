@@ -3,7 +3,10 @@
 	<h2>这里是标题</h2>
 	<div class="empty"></div>
 	<div class="question">
-		<p><span>+</span><span>添加问题</span></p>
+		<button class="visible questionType">单选题</button>
+		<button class="visible questionType">多选题</button>
+		<button class="visible questionType">文本题</button>
+		<p><span class="addQuestion">+</span><span class="addQuestion">添加问题</span></p>
 	</div>
 	<div class="empty"></div>
 	<div class="result">
@@ -13,28 +16,4 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
- $("#deadline").datepicker({
-  /* 区域化周名为中文 */
-  dayNamesMin : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], 
-  /* 每周从周一开始 */
-  firstDay : 1,
-  /* 区域化月名为中文习惯 */
-  monthNames : ["1月", "2月", "3月", "4月", "5月", "6月",
-     "7月", "8月", "9月", "10月", "11月", "12月"],
-  /* 月份显示在年后面 */
-  showMonthAfterYear : true,
-  /* 年份后缀字符 */
-  yearSuffix : "年",
-  /* 格式化中文日期
-  （因为月份中已经包含“月”字，所以这里省略） */
-  dateFormat : "yy年MMdd日"  
- }); 
-});
-</script>
-<script>
-$("span").click(function(){
-	alert("不会搞::><::")
-})
-</script>
+

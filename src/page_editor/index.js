@@ -14,10 +14,19 @@ var PageEditor = PageBaseView.extend({
   template: template,
 
   events: {
+    'click .addQuestion' : 'questionTypeChoose'
   },
 
   initialize: function () {
     this._initialize(arguments)
+  },
+
+
+  questionTypeChoose:function(){
+    var target=$(".questionType")
+    if(target.hasClass('visible'))
+      target.removeClass('visible')
+    else{target.addClass('visible')}
   },
 
   render: function () {
