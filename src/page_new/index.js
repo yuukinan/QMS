@@ -20,6 +20,7 @@ var PageNew = PageBaseView.extend({
     this._initialize(arguments)
   },
 
+
   render: function () {
     this._render()
 

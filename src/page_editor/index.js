@@ -1,9 +1,12 @@
 console.log('editor start...')
 require('./index.styl')
 
-var template     = require('./template.html')
-var PageBaseView = require('../page.base.view')
-var ievent       = require('../commons/ievent')
+var template              = require('./template.html')
+var PageBaseView          = require('../page.base.view')
+var ievent                = require('../commons/ievent')
+var Model                 = require('./model')
+var question_type         = require('./question_type')
+
 
 var PageEditor = PageBaseView.extend({
 
