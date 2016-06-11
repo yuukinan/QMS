@@ -31,10 +31,10 @@ var PageList = PageBaseView.extend({
 
     if (this.isFirstInit) {
       this.isFirstInit = false
-    }
 
-    // 渲染列表项
-    this.renderItem()
+      // 渲染列表项
+      this.renderItem()
+    }
 
     return this
   },
