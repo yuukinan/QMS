@@ -1,9 +1,9 @@
 require('./index.styl')
 
 var template  = require('./template.html')
-var Model = require('../model')
+var Model = require('../../model')
 
-var onechoice_question = Backbone.view.extend({
+var oneChoice = Backbone.View.extend({
 	tagName: 'h4',
     className: 'question-number',
 
@@ -21,4 +21,4 @@ var onechoice_question = Backbone.view.extend({
   }
 })
 
-module.exports = one_question
+module.exports = oneChoice
