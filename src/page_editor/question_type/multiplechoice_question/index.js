@@ -1,9 +1,9 @@
 require('./index.styl')
 
 var template  = require('./template.html')
-var Model = require('../model')
+var Model = require('../../model')
 
-var multiplechoice_question = Backbone.view.extend({
+var multiplechoice_question = Backbone.View.extend({
 	tagName: 'h4',
     className: 'question-number',
 
