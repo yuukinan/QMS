@@ -1,3 +1,3 @@
-exports.multiplechoice = require('./multiplechoice')
-exports.onechoice      = require('./onechoice')
-exports.text           = require('./text')
+exports.MultipleChoice = require('./multiplechoice')
+exports.OneChoice      = require('./onechoice')
+exports.Text           = require('./text')
