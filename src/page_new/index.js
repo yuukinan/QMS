@@ -1,4 +1,5 @@
 console.log('new start...')
+
 require('./index.styl')
 
 var template     = require('./template.html')
