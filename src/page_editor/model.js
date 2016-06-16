@@ -7,6 +7,9 @@ var EditorModel = Backbone.Model.extend({
   addQuestion: function (question) {
     this.get('list').push(question)
   },
+  removeQuestion:function(number){
+    list.splice(number-1,1)
+  },
 
   // 改变单个选项的value
   changeValue: function (number, newVal) {
@@ -20,6 +23,11 @@ var EditorModel = Backbone.Model.extend({
     var list   = this.get('list')
     var target = list.splice(number-1, 1)[0]
     list.splice(number-2, 0, target)
+  },
+  againQuestion: function(number) {
+    var list = this.get('list')
+    var again = list[number-1]
+    list.splice(number,0,again)
   }
 })
 

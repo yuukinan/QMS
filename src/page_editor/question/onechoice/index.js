@@ -12,7 +12,8 @@ var oneChoice = Backbone.View.extend({
       'click input'   : 'radioHandler',
       'click .up'     : 'upHandler',
       'click .down'   : 'downHandler',
-      'click .remove' : 'removeHandler'
+      'click .remove' : 'removeHandler',
+      'click .again'  : 'againHandler'
     },
 
     initialize: function (options) {
@@ -20,6 +21,7 @@ var oneChoice = Backbone.View.extend({
         // 标示题目序号
         this.number = options.number
         this.model = options.model
+        
     },
 
     radioHandler: function (evt) {
@@ -32,11 +34,17 @@ var oneChoice = Backbone.View.extend({
     },
 
     downHandler: function () {
-
+        this.model.upQuestion(this.number+1)
     },
 
     removeHandler: function () {
+        this.listenTo(this.model,'destroy',this.remove)
+        this.model.destroy()
+        this.model.removeQuestion(this.number)
+    },
 
+    againHandler: function(){
+        this.model.againQuestion(this.number)
     },
 
     render: function () {

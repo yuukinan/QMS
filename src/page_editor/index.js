@@ -60,7 +60,17 @@ var PageEditor = PageBaseView.extend({
   },
 
   textHandler: function () {
+    this.number +=1
+    var text = new question.Text({
+      number: this.number,
+      model: this.model
+    })
 
+    this.container.append(text.render().$el)
+    this.model.addQuestion({
+      type:'text',
+      value: []
+    })
   },
 
   questionTypeChoose: function () {
