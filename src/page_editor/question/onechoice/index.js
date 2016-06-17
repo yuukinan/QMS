@@ -38,9 +38,9 @@ var oneChoice = Backbone.View.extend({
     },
 
     removeHandler: function () {
-        this.listenTo(this.model,'destroy',this.remove)
-        this.model.destroy()
         this.model.removeQuestion(this.number)
+        this.container.remove($el)
+
     },
 
     againHandler: function(){
