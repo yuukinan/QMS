@@ -1,7 +1,6 @@
 require('./index.styl')
 
 var template  = require('./template.html')
-// var Model     = require('../../model')
 
 var oneChoice = Backbone.View.extend({
 	tagName: 'div',
@@ -17,11 +16,10 @@ var oneChoice = Backbone.View.extend({
     },
 
     initialize: function (options) {
-        // this.model = new Model(options)
         // 标示题目序号
         this.number = options.number
         this.model = options.model
-        
+
     },
 
     radioHandler: function (evt) {
@@ -38,9 +36,11 @@ var oneChoice = Backbone.View.extend({
     },
 
     removeHandler: function () {
-        this.listenTo(this.model,'destroy',this.remove)
-        this.model.destroy()
-        this.model.removeQuestion(this.number)
+        var self = this
+
+        this.model.removeQuestion(this.number, function () {
+            self.$el.remove()
+        })
     },
 
     againHandler: function(){
