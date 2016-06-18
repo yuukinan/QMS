@@ -25,12 +25,12 @@ var PageEditor = PageBaseView.extend({
   initialize: function () {
     this._initialize(arguments)
 
-    this.number = 0
     this.model = new Model()
+    this.number = this.model.get('list').length
   },
 
   oneChoiceHandler: function () {
-    this.number += 1
+    this.number = this.model.get('list').length + 1
 
     var oneChoice = new question.OneChoice({
       number: this.number,
@@ -45,7 +45,7 @@ var PageEditor = PageBaseView.extend({
   },
 
   multipleChoiceHandler: function () {
-    this.number += 1
+    this.number = this.model.get('list').length + 1
 
     var multipleChoice = new question.MultipleChoice({
       number: this.number,
@@ -60,7 +60,8 @@ var PageEditor = PageBaseView.extend({
   },
 
   textHandler: function () {
-    this.number +=1
+    this.number = this.model.get('list').length + 1
+
     var text = new question.Text({
       number: this.number,
       model: this.model

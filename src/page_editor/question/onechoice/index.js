@@ -1,7 +1,6 @@
 require('./index.styl')
 
 var template  = require('./template.html')
-// var Model     = require('../../model')
 
 var oneChoice = Backbone.View.extend({
 	tagName: 'div',
@@ -17,11 +16,10 @@ var oneChoice = Backbone.View.extend({
     },
 
     initialize: function (options) {
-        // this.model = new Model(options)
         // 标示题目序号
         this.number = options.number
         this.model = options.model
-        
+
     },
 
     radioHandler: function (evt) {
@@ -30,21 +28,45 @@ var oneChoice = Backbone.View.extend({
     },
 
     upHandler: function () {
-        this.model.upQuestion(this.number)
+        var self = this
+        this.model.upQuestion(this.number, function(){
+        var now = self.$el 
+        var pre = self.$el.prev()
+        now.insertBefore(pre)
+        self.changeQuestionNumber()
+        })
     },
 
     downHandler: function () {
-        this.model.upQuestion(this.number+1)
+        var self = this
+        this.model.upQuestion(this.number+1, function(){
+            var now = self.$el
+            var after = self.$el.next()
+            now.insertAfter(after)
+            self.changeQuestionNumber()
+        })
     },
 
     removeHandler: function () {
-        this.model.removeQuestion(this.number)
-        this.container.remove($el)
+        var self = this
+        console.log(this)
 
+        this.model.removeQuestion(this.number, function () {
+            self.$el.remove()
+            self.changeQuestionNumber() 
+            console.log(this)
+        })
     },
 
-    againHandler: function(){
+    againHandler: function () {
         this.model.againQuestion(this.number)
+    },
+
+    changeQuestionNumber: function () {
+        var number=$(".number")
+        for(var i=0;i<number.length;i++)
+            {number[i].innerText=i+1}
+        return number
     },
 
     render: function () {
