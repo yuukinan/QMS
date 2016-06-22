@@ -6,6 +6,7 @@ var PageBaseView  = require('../page.base.view')
 var ievent        = require('../commons/ievent')
 var Model         = require('./model')
 var question      = require('./question')
+var server        = require('../commons/server')
 
 var PageEditor = PageBaseView.extend({
 
@@ -19,7 +20,8 @@ var PageEditor = PageBaseView.extend({
     'click .oneChoice'      : 'oneChoiceHandler',
     'click .multipleChoice' : 'multipleChoiceHandler',
     'click .text'           : 'textHandler',
-    'click .addQuestion'    : 'questionTypeChoose'
+    'click .addQuestion'    : 'questionTypeChoose',
+    'click .save'           : 'saveHandler'
   },
 
   initialize: function () {
@@ -82,6 +84,18 @@ var PageEditor = PageBaseView.extend({
     } else {
       target.addClass('visible')
     }
+  },
+
+  saveHandler: function (){
+    var date = new Date()
+      var data = {
+  //    id: 1,
+      title: "x",
+      endTime: date
+      }
+      server.addNew(data, function (){
+
+    })
   },
 
   render: function () {
