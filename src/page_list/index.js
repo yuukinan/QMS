@@ -1,12 +1,10 @@
 console.log('list start...')
 require('./index.styl')
 
-// 测试数据
-var mock_data    = require('./mock_data')
-
 var template     = require('./template.html')
 var PageBaseView = require('../page.base.view')
 var ievent       = require('../commons/ievent')
+var server       = require('../commons/server')
 
 // 列表项
 var Item         = require('./item')
@@ -31,10 +29,10 @@ var PageList = PageBaseView.extend({
 
     if (this.isFirstInit) {
       this.isFirstInit = false
-
-      // 渲染列表项
-      this.renderItem()
     }
+
+    // 渲染列表项
+    this.renderItem()
 
     return this
   },
@@ -43,9 +41,10 @@ var PageList = PageBaseView.extend({
     var container = this.$el.find('tbody')
     var tempItem  = null
 
-    _.each(mock_data, function (data) {
-      tempItem = new Item(data)
-      container.append(tempItem.render().el)
+    server.list({}, function (res) {
+      console.log(res)
+      // tempItem = new Item(data)
+      // container.html(tempItem.render().el)
     })
 
     return this
