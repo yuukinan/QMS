@@ -1,5 +1,7 @@
 var baseUrl = 'http://localhost:3000'
+
 var server = {}
+
 server.addNew = function (data, callback){
 	$.ajax({
 		url: baseUrl + '/addNew',
@@ -8,6 +10,16 @@ server.addNew = function (data, callback){
 		data: data,
 		success: callback
 	})
+}
+
+server.list = function (data, callback) {
+  $.ajax({
+    url: baseUrl + '/list',
+    type: 'GET',
+    dataType: 'json',
+    data: data,
+    success: callback
+  })
 }
 
 //server.edit = function (data, callback){
