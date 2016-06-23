@@ -11,7 +11,8 @@ var Item = Backbone.View.extend({
   className: 'list-item',
 
   events: {
-    'click .delete' : 'itemDelete'
+    'click .delete' : 'itemDelete',
+    'click .data' : 'viewData'
   },
 
   initialize: function (options) {
@@ -23,6 +24,9 @@ var Item = Backbone.View.extend({
     if(st=="end")
       alert("问卷已结束，不能删除")
     else{alert("确认删除？")}
+  },
+
+  viewData: function(){
   },
 
   render: function () {
