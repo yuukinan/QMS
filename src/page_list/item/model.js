@@ -7,7 +7,7 @@ var statusMap = {
 var ItemModel = Backbone.Model.extend({
   defaults: {
     title: '',
-    time: 0,
+    createdAt: 0,
     status: 'unPublish',
     checked: false
   },

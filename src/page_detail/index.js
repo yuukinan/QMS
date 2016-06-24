@@ -26,9 +26,29 @@ var PageDetail = PageBaseView.extend({
     if (this.isFirstInit) {
       this.isFirstInit = false
     }
+    
+    this.renderDetail
+
+    return this
+  },
+  
+  renderDetail: function (){
+    var container = this.$el.find('tbody')
+    var tempDetail = null
+
+    container.html({})
+    server.detail({id: id}, function (res) {
+
+      if (res.result.code !== 200) return
+
+      tempDetail = new template(res.data.questionList)
+      container.append(tempDetail.render().el)
+
+    })
 
     return this
   }
+
 })
 
 var pageDetail = new PageDetail
