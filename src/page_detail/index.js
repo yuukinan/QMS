@@ -3,7 +3,9 @@ require('./index.styl')
 
 var template     = require('./template.html')
 var PageBaseView = require('../page.base.view')
+
 var ievent       = require('../commons/ievent')
+var server       = require('../commons/server')
 
 var PageDetail = PageBaseView.extend({
 
@@ -20,12 +22,16 @@ var PageDetail = PageBaseView.extend({
     this._initialize(arguments)
   },
 
-  render: function () {
+  render: function (action, id) {
     this._render()
 
     if (this.isFirstInit) {
       this.isFirstInit = false
     }
+
+    server.detail({id: id}, function (res) {
+      // 渲染
+    })
 
     return this
   }

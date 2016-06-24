@@ -1,6 +1,8 @@
 console.log('list start...')
 require('./index.styl')
 
+var router    = require('../../commons/router')
+
 var template  = require('./template.html')
 var ItemModel = require('./model')
 
@@ -11,11 +13,19 @@ var Item = Backbone.View.extend({
   className: 'list-item',
 
   events: {
-    'click .delete' : 'itemDelete'
+    'click .delete' : 'itemDelete',
+    'click .detail' : 'detailHandler'
   },
 
   initialize: function (options) {
     this.model = new ItemModel(options)
+  },
+
+  detailHandler: function (evt) {
+    var parent = $(evt.target).parent()
+    var id     = parent.data('id')
+
+    router.navigate('detail/' + id, {trigger: true})
   },
 
   itemDelete: function(){
