@@ -43,8 +43,8 @@ var PageList = PageBaseView.extend({
 
     server.list({}, function (res) {
       console.log(res)
-      // tempItem = new Item(data)
-      // container.html(tempItem.render().el)
+      tempItem = new Item(res)
+      container.html(tempItem.render().el)
     })
 
     return this
