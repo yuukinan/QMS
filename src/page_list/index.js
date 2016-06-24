@@ -41,10 +41,16 @@ var PageList = PageBaseView.extend({
     var container = this.$el.find('tbody')
     var tempItem  = null
 
+    // 先清空
+    container.html({})
+
     server.list({}, function (res) {
-      console.log(res)
-      // tempItem = new Item(data)
-      // container.html(tempItem.render().el)
+      if (res.result.code !== 200) return
+
+      res.data.questionList.forEach(function (ele) {
+        tempItem = new Item(ele)
+        container.append(tempItem.render().el)
+      })
     })
 
     return this
