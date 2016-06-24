@@ -22,6 +22,16 @@ server.list = function (data, callback) {
   })
 }
 
+server.detail = function (data, callback) {
+  $.ajax({
+    url: baseUrl + '/detail',
+    type: 'GET',
+    dataType: 'json',
+    data: data,
+    success: callback
+  })
+}
+
 //server.edit = function (data, callback){
 //	$.ajax({
 //		url: baseUrl + '/edit',
