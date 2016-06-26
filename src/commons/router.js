@@ -8,9 +8,7 @@ var Router = Backbone.Router.extend({
     "list"         : "pageList",
     "detail(/:id)" : "pageDetail",
     "new"          : "pageNew",
-    "add"          : "pageEditor",
-    "edit(/:id)"         : "pageEditor",
-    "data(/:id)"   : "pageDetail"
+    "add"          : "pageEditor"
   },
 
   pageEditor: function (id) {

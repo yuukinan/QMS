@@ -2,6 +2,7 @@ console.log('editor start...')
 require('./index.styl')
 
 var template      = require('./template.html')
+var index         = require('./index.html')
 var PageBaseView  = require('../page.base.view')
 var ievent        = require('../commons/ievent')
 var Model         = require('./model')
@@ -106,6 +107,14 @@ var PageEditor = PageBaseView.extend({
     }
 
     this.container = this.$el.find('.container')
+
+    var self = this
+
+    if(id){
+      server.edit({id: id}, function(res){
+        self.$el.html(index(res.data[0]))
+      })
+    }
 
     return this
   }
