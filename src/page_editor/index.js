@@ -22,7 +22,9 @@ var PageEditor = PageBaseView.extend({
     'click .multipleChoice' : 'multipleChoiceHandler',
     'click .text'           : 'textHandler',
     'click .addQuestion'    : 'questionTypeChoose',
-    'click .save'           : 'saveHandler'
+    'click .save'           : 'saveHandler',
+    'blur .title'           : 'titleHandler',
+    'blur .deadline'        : 'deadlineHandler'
   },
 
   initialize: function () {
@@ -87,19 +89,25 @@ var PageEditor = PageBaseView.extend({
     }
   },
 
+  titleHandler: function (){
+    var title = $(".title").val()
+    this.model.set("title", title)
+  },
+
+  deadlineHandler: function (){
+    var endTime = $(".deadline").val()
+    this.model.set("endTime",endTime)
+  },
+
   saveHandler: function (){
-    var date = new Date()
-      var data = {
-  //    id: 1,
-      title: "x",
-      endTime: date
-      }
+
+    var data = this.model.toJSON()
       server.addNew(data, function (){
 
     })
   },
 
-  render: function () {
+  render: function (id) {
     this._render()
 
     if (this.isFirstInit) {

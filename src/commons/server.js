@@ -42,4 +42,14 @@ server.edit = function (data, callback){
 	})
 }
 
+server.editSave = function (data, callback){
+	$ajax({
+		url: baseUrl + '/edit',
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+		success: callback
+	})
+}
+
 module.exports = server

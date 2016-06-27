@@ -1,7 +1,9 @@
 var EditorModel = Backbone.Model.extend({
   defaults: {
     // 存放 question
-    list: []
+    list: [],
+    title:'' ,
+    endTime:''
   },
 
   addQuestion: function (question) {
