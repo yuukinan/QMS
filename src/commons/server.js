@@ -43,7 +43,7 @@ server.edit = function (data, callback){
 }
 
 server.editSave = function (data, callback){
-	$ajax({
+	$.ajax({
 		url: baseUrl + '/edit',
 		type: 'POST',
 		dataType: 'json',

@@ -18,7 +18,7 @@ var PageList = PageBaseView.extend({
   template: template,
 
   events: {
-    'click .data'  :  'dataHandler'
+//    'click .data'  :  'dataHandler'
   },
 
   initialize: function () {
@@ -57,11 +57,11 @@ var PageList = PageBaseView.extend({
     })
 
     return this
-  },
-
-  dataHandler: function(){
-    var id = $("#data-id")
   }
+
+//  dataHandler: function(){
+//   var id = $("#data-id")
+//  }
 })
 
 var pageList = new PageList

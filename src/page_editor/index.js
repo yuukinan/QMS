@@ -102,9 +102,17 @@ var PageEditor = PageBaseView.extend({
   saveHandler: function (){
 
     var data = this.model.toJSON()
-      server.addNew(data, function (){
 
-    })
+   // if(id){
+   //    server.editSave(data, function(){
+   //
+   //    })
+   // }
+   // else{
+       server.addNew(data, function (){
+
+       })
+   // }
   },
 
   render: function (id) {
