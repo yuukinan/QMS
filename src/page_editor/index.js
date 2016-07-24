@@ -6,6 +6,7 @@ var index         = require('./index.html')
 var PageBaseView  = require('../page.base.view')
 var ievent        = require('../commons/ievent')
 var server        = require('../commons/server')
+var store         = require('../commons/store')
 var Model         = require('./model')
 var question      = require('./question')
 
@@ -119,14 +120,9 @@ var PageEditor = PageBaseView.extend({
   },
 
   publishHandler: function () {
-    var date = new Date()
-    var data = {
-      //id: 1,
-      title: "x",
-      endTime: date
-    }
-    server.addNew(data, function (){
-
+    // server.addNew(data, function (){})
+    store.save(this.model.toJSON, function () {
+      console.log('success')
     })
   },
 

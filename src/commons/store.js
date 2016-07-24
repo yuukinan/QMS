@@ -37,3 +37,5 @@ store.list = function () {
 
   return result
 }
+
+module.exports = store
