@@ -5,7 +5,8 @@ var EditorModel = Backbone.Model.extend({
     // 问卷名字
     title: '',
     // 截止日期
-    deadline: ''
+    deadline: '',
+    status: 'unPublish'
   },
 
   initialize: function () {

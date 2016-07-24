@@ -5,6 +5,8 @@ var template     = require('./template.html')
 var PageBaseView = require('../page.base.view')
 var ievent       = require('../commons/ievent')
 var server       = require('../commons/server')
+var store        = require('../commons/store')
+var router       = require('../commons/router')
 
 // 列表项
 var Item         = require('./item')
@@ -29,9 +31,9 @@ var PageList = PageBaseView.extend({
   render: function () {
     this._render()
 
-    if (this.isFirstInit) {
-      this.isFirstInit = false
-    }
+    // if (this.isFirstInit) {
+    //   this.isFirstInit = false
+    // }
 
     // 渲染列表项
     this.renderItem()
@@ -50,15 +52,19 @@ var PageList = PageBaseView.extend({
 
   delSelectdHandler: function () {
     var selectArray = []
-    var checkboxs = this.$el.find('input[name="list-item"]')
+    var checkboxs = this.$el.find('input[name="list-item"]:checked')
     var temp = null
+    var self = this
 
     _.each(checkboxs, function (ele) {
       temp = $(ele).closest('.list-item').attr('id')
-      selectArray.push(parseInt(temp))
+      selectArray.push(temp)
     })
 
     // 删除选中的
+    store.delSelected(selectArray, function () {
+      checkboxs.closest('tr').remove()
+    })
   },
 
   renderItem: function () {
@@ -68,40 +74,13 @@ var PageList = PageBaseView.extend({
     // 先清空
     container.html({})
 
-    // server.list({}, function (res) {
-    //   if (res.result.code !== 200) return
-
-    //   res.data.questionList.forEach(function (ele) {
-    //     tempItem = new Item(ele)
-    //     container.append(tempItem.render().el)
-    //   })
-    // })
-
-    // test
-    var data = [{
-        id: 1,
-        title: '这是问卷1',
-        createdAt: '2015-08-09',
-        status: 'unPublish',
-        checked: false
-      }, {
-        id: 2,
-        title: '这是问卷2',
-        createdAt: '2015-08-21',
-        status: 'published',
-        checked: false
-      }, {
-        id: 3,
-        title: '这是问卷3',
-        createdAt: '2015-12-09',
-        status: 'end',
-        checked: false
-      }]
-
-    data.forEach(function (ele) {
+    store.list(function (data) {
+      console.log(data)
+      data.forEach(function (ele) {
         tempItem = new Item(ele)
         container.append(tempItem.render().el)
       })
+    })
 
     return this
   },

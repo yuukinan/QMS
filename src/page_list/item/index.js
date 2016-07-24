@@ -2,6 +2,7 @@ console.log('list start...')
 require('./index.styl')
 
 var router    = require('../../commons/router')
+var store     = require('../../commons/store')
 
 var template  = require('./template.html')
 var ItemModel = require('./model')
@@ -44,12 +45,21 @@ var Item = Backbone.View.extend({
     router.navigate('editor/' + id, {trigger: true})
   },
 
-  itemDelete: function(){
-    var st = this.model.get("status")
+  itemDelete: function (evt) {
+    var parent = $(evt.target).parent()
+    var id     = parent.data('id')
+    var st     = this.model.get("status")
+
     if (st == "end") {
       alert("问卷已结束，不能删除")
     } else {
-      alert("确认删除？")
+      var _confirm = confirm("确认删除?")
+
+      if (_confirm == true) {
+        store.del(id, function () {
+          $(evt.target).closest('.list-item').remove()
+        })
+      }
     }
   },
 

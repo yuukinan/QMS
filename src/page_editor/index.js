@@ -6,6 +6,7 @@ var index         = require('./index.html')
 var PageBaseView  = require('../page.base.view')
 var ievent        = require('../commons/ievent')
 var server        = require('../commons/server')
+var router        = require('../commons/router')
 var store         = require('../commons/store')
 var Model         = require('./model')
 var question      = require('./question')
@@ -115,14 +116,55 @@ var PageEditor = PageBaseView.extend({
     this.model.set("endTime",endTime)
   },
 
-  saveHandler: function (){
-    console.log(this.model.toJSON())
+  saveHandler: function () {
+    var data = this.model.toJSON()
+    var id = this.id
+
+    if (!data) return
+
+    store.update(id, data, function (id) {
+      router.navigate('detail/'+id, {trigger: true})
+    })
   },
 
   publishHandler: function () {
-    // server.addNew(data, function (){})
-    store.save(this.model.toJSON, function () {
-      console.log('success')
+    var data = this.model.toJSON()
+
+    if (!data) return
+
+    store.save(data, function (id) {
+      router.navigate('detail/'+id, {trigger: true})
+    })
+  },
+
+  initData: function (data) {
+    var self = this
+
+    this.model.set('list', data.list)
+    this.model.set('title', data.title)
+    this.model.set('deadline', data.deadline)
+
+    if (data.status) {
+      this.model.set('status', data.status)
+    }
+
+    this.$el.find('.title').val(data.title)
+    this.$el.find('#deadline').val(data.deadline)
+
+    this.number = this.model.get('list').length
+
+    var temp = null
+
+    _.each(data.list, function (ele, idx) {
+      temp = new question[ele.type]({
+        number: idx+1,
+        model: self.model,
+        title: ele.title,
+        data: ele.value,
+        required: ele.required
+      })
+
+      self.container.append(temp.render().$el)
     })
   },
 
@@ -139,48 +181,15 @@ var PageEditor = PageBaseView.extend({
 
     this.container = this.$el.find('.container')
 
-    if (id) {
-      // 请求数据，构造数据，array
-      // test
-      var data = {
-        title: '这真的是问卷的名字',
-        deadline: '2016-01-01'
-      }
-      data.list = [{
-        title: '这是一个单选',
-        type: 'oneChoice',
-        value: [1111, 222, 333]
-      }, {
-        title: '这是一个多选',
-        type: 'multipleChoice',
-        value: ['aaa', 'bbbb', 'cccc', 'dddd']
-      }, {
-        title: '这是一个文本输入',
-        type: 'text',
-        required: true,
-        value: '这是一段文字'
-      }]
+    if (id.indexOf('question-') == 0 && !!store.get(id)) {
+      store.get(id, function (data) {
+        self.initData(data)
 
-      this.model.set('list', data.list)
-      this.model.set('title', data.title)
-      this.$el.find('.title').val(data.title)
-      this.model.set('deadline', data.deadline)
-      this.$el.find('#deadline').val(data.deadline)
-      this.number = this.model.get('list').length
-
-      var temp = null
-
-      _.each(data.list, function (ele, idx) {
-        temp = new question[ele.type]({
-          number: idx+1,
-          model: self.model,
-          title: ele.title,
-          data: ele.value,
-          required: ele.required
-        })
-
-        self.container.append(temp.render().$el)
+        self.id = id
+        self.$el.find('.publish')[0].disabled = true
       })
+    } else {
+      this.$el.find('.save')[0].disabled = true
     }
 
     return this
