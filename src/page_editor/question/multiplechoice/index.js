@@ -10,7 +10,7 @@ var multipleChoice = Backbone.View.extend({
 
   events:{
     'change .ques-title' : 'changeTitleHandler',
-    'click .checkbox'    : 'changeValueHandler',
+    'change .checkbox'   : 'changeValueHandler',
     'click .up'          : 'upHandler',
     'click .down'        : 'downHandler',
     'click .remove'      : 'removeHandler',
@@ -99,9 +99,20 @@ var multipleChoice = Backbone.View.extend({
     var self = this
     var number = parseInt(this.$el.find('.number').text())
 
-    this.model.againQuestion(number, function () {
+    this.model.againQuestion(number, function (ele) {
       var now = self.$el
-      now.clone().insertAfter(now)
+      // now.clone().insertAfter(now)
+
+      var temp = new self.constructor({
+        number: number+1,
+        model: self.model,
+        title: ele.title,
+        data: ele.value,
+        required: ele.required
+      })
+
+      temp.render().$el.insertAfter(now)
+
       self.changeQuestionNumber()
     })
   },
@@ -121,6 +132,7 @@ var multipleChoice = Backbone.View.extend({
     ].join('')
 
     container.append($(tmpl))
+
     this.changeValueHandler()
   },
 

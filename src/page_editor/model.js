@@ -77,7 +77,7 @@ var EditorModel = Backbone.Model.extend({
     var again = list[number-1]
 
     list.splice(number, 0, again)
-    callback && callback()
+    callback && callback(again)
 
     console.log(this.toJSON())
   }
