@@ -1,9 +1,12 @@
-<td><%= title %></td>
+<td>
+  <input type="checkbox" name="list-item">
+  <%= title %>
+</td>
 <td><%= createdAt %></td>
 <td><%= status %></td>
 
 <td data-id="<%= id %>">
-  <button class="edit">编辑</button>
+  <button class="editor">编辑</button>
   <button class="delete">删除</button>
   <button class="detail">查看问卷</button>
 </td>

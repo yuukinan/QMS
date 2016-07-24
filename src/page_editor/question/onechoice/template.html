@@ -1,9 +1,30 @@
-<h4><span class="number"><%= number %></span>单选题</h4>
-<input type="radio" name="questionType" value="选项1"/>选项一
-<input type="radio" name="questionType" value="选项2"/>选项二
+<h4>
+  <span class="number"><%= number %></span>
+  <input type="text" class="ques-title" placeholder="题目名字(必填)">
+</h4>
+<div class="optContainer">
+  <label>
+    <input type="radio" name="questionType" value="选项1"/>
+    <input type="text" class="radio" placeholder="选项1">
+  </label>
+  <label>
+    <input type="radio" name="questionType" value="选项2"/>
+    <input type="text" class="radio" placeholder="选项2">
+  </label>
+  <label>
+    <input type="radio" name="questionType" value="选项3"/>
+    <input type="text" class="radio" placeholder="选项3">
+  </label>
+  <label>
+    <input type="radio" name="questionType" value="选项4"/>
+    <input type="text" class="radio" placeholder="选项4">
+  </label>
+</div>
 <ul class="actions">
   <li class="up">上移</li>
   <li class="down">下移</li>
-  <li class="again">复用</li>
   <li class="remove">删除</li>
+  <li class="again">复用</li>
+  <li class="addOpt">增加选项</li>
+  <li class="rmOpt">删除选项</li>
 </ul>

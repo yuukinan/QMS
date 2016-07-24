@@ -1,8 +1,17 @@
-<h4><span class="number"><%= number %></span>文本题</h4>
+<h4>
+  <span class="number"><%= number %></span>
+  <input class="ques-title" type="text" placeholder="题目名字(必填)">
+</h4>
 <textarea name="questionType" value="text_question"></textarea>
 <ul class="actions">
   <li class="up">上移</li>
   <li class="down">下移</li>
   <li class="again">复用</li>
   <li class="remove">删除</li>
+  <li class="required">
+    <label>
+      <input type="checkbox" class="require" name="required" value="false">
+      此题是否必填
+    </label>
+  </li>
 </ul>
