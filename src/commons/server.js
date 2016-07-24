@@ -32,14 +32,24 @@ server.detail = function (data, callback) {
   })
 }
 
-//server.edit = function (data, callback){
-//	$.ajax({
-//		url: baseUrl + '/edit',
-//		type: 'POST',
-//		dataType: 'json',
-//		data: data,
-//		success: callback
-//	})
-//}
+server.edit = function (data, callback){
+	$.ajax({
+		url: baseUrl + '/edit',
+		type: 'GET',
+		dataType: 'json',
+		data: data,
+		success: callback
+	})
+}
+
+server.editSave = function (data, callback){
+	$ajax({
+		url: baseUrl + '/edit',
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+		success: callback
+	})
+}
 
 module.exports = server

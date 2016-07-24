@@ -2,6 +2,7 @@ console.log('editor start...')
 require('./index.styl')
 
 var template      = require('./template.html')
+var index         = require('./index.html')
 var PageBaseView  = require('../page.base.view')
 var ievent        = require('../commons/ievent')
 var server        = require('../commons/server')
@@ -101,6 +102,16 @@ var PageEditor = PageBaseView.extend({
     } else {
       target.addClass('visible')
     }
+  },
+
+  titleHandler: function (){
+    var title = $(".title").val()
+    this.model.set("title", title)
+  },
+
+  deadlineHandler: function (){
+    var endTime = $(".deadline").val()
+    this.model.set("endTime",endTime)
   },
 
   saveHandler: function (){

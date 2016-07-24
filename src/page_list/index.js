@@ -68,6 +68,7 @@ var PageList = PageBaseView.extend({
     // 先清空
     container.html({})
 
+<<<<<<< HEAD
     // server.list({}, function (res) {
     //   if (res.result.code !== 200) return
 
@@ -102,8 +103,24 @@ var PageList = PageBaseView.extend({
         tempItem = new Item(ele)
         container.append(tempItem.render().el)
       })
+=======
+    server.list({}, function (res) {
+
+      if (res.result.code !== 200) return
+
+      res.data.questionList.forEach(function (ele) {
+        tempItem = new Item(ele)
+        container.append(tempItem.render().el)
+      })
+
+    })
+>>>>>>> 664a8953f524c59ab35e841c32dd31fddd2094d9
 
     return this
+  },
+
+  dataHandler: function(){
+    var id = $("#data-id")
   }
 })
 

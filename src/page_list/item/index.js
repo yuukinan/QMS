@@ -32,8 +32,16 @@ var Item = Backbone.View.extend({
   detailHandler: function (evt) {
     var parent = $(evt.target).parent()
     var id     = parent.data('id')
+    console.log('list', id)
 
     router.navigate('detail/' + id, {trigger: true})
+  },
+
+  editHandler: function (evt) {
+    var parent = $(evt.target).parent()
+    var id     = parent.data('id')
+
+    router.navigate('editor/' + id, {trigger: true})
   },
 
   itemDelete: function(){
