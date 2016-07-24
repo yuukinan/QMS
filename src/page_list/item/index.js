@@ -14,11 +14,19 @@ var Item = Backbone.View.extend({
 
   events: {
     'click .delete' : 'itemDelete',
+    'click .editor' : 'editorHandler',
     'click .detail' : 'detailHandler'
   },
 
   initialize: function (options) {
     this.model = new ItemModel(options)
+  },
+
+  editorHandler: function (evt) {
+    var parent = $(evt.target).parent()
+    var id     = parent.data('id')
+
+    router.navigate('editor/' + id, {trigger: true})
   },
 
   detailHandler: function (evt) {
@@ -29,10 +37,12 @@ var Item = Backbone.View.extend({
   },
 
   itemDelete: function(){
-    var st=this.model.get("status")
-    if(st=="end")
+    var st = this.model.get("status")
+    if (st == "end") {
       alert("问卷已结束，不能删除")
-    else{alert("确认删除？")}
+    } else {
+      alert("确认删除？")
+    }
   },
 
   render: function () {
