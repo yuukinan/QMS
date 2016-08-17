@@ -8,8 +8,8 @@ var ItemModel = Backbone.Model.extend({
   defaults: {
     id: 0,
     title: '',
-    createdAt: 0,
-    status: 'unPublish',
+    deadline:'',
+    status: 'published',
     checked: false
   },
 

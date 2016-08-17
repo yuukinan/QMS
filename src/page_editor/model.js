@@ -6,7 +6,7 @@ var EditorModel = Backbone.Model.extend({
     title: '',
     // 截止日期
     deadline: '',
-    status: 'unPublish'
+    status: 'published'
   },
 
   initialize: function () {

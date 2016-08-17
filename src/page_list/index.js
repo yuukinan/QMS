@@ -78,7 +78,7 @@ var PageList = PageBaseView.extend({
 
 
     // test
-    var data = [{
+   /* var data = [{
         id: 1,
         title: '这是问卷1',
         createdAt: '2015-08-09',
@@ -103,7 +103,7 @@ var PageList = PageBaseView.extend({
         container.append(tempItem.render().el)
       })
 
-
+*/
     store.list(function (data) {
       console.log(data)
       data.forEach(function (ele) {

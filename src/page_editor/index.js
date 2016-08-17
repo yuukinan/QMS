@@ -21,7 +21,7 @@ var PageEditor = PageBaseView.extend({
 
   events: {
     'change .title'         : 'titleHandler',
-    'change #deadline'      : 'deadlineHandler',
+    'change .deadline'      : 'deadlineHandler',
     'click .oneChoice'      : 'oneChoiceHandler',
     'click .multipleChoice' : 'multipleChoiceHandler',
     'click .text'           : 'textHandler',
@@ -112,8 +112,8 @@ var PageEditor = PageBaseView.extend({
   },
 
   deadlineHandler: function (){
-    var endTime = $(".deadline").val()
-    this.model.set("endTime",endTime)
+    var deadline = $(".deadline").val()
+    this.model.set("deadline",deadline)
   },
 
   saveHandler: function () {
@@ -166,7 +166,7 @@ var PageEditor = PageBaseView.extend({
 
       self.container.append(temp.render().$el)
     })
-    
+
   },
 
   render: function (action, id) {
