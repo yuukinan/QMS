@@ -5,6 +5,8 @@ var template     = require('./template.html')
 var PageBaseView = require('../page.base.view')
 var ievent       = require('../commons/ievent')
 var server       = require('../commons/server')
+var store        = require('../commons/store')
+var router       = require('../commons/router')
 
 // 列表项
 var Item         = require('./item')
@@ -31,9 +33,9 @@ var PageList = PageBaseView.extend({
   render: function () {
     this._render()
 
-    if (this.isFirstInit) {
-      this.isFirstInit = false
-    }
+    // if (this.isFirstInit) {
+    //   this.isFirstInit = false
+    // }
 
     // 渲染列表项
     this.renderItem()
@@ -52,15 +54,19 @@ var PageList = PageBaseView.extend({
 
   delSelectdHandler: function () {
     var selectArray = []
-    var checkboxs = this.$el.find('input[name="list-item"]')
+    var checkboxs = this.$el.find('input[name="list-item"]:checked')
     var temp = null
+    var self = this
 
     _.each(checkboxs, function (ele) {
       temp = $(ele).closest('.list-item').attr('id')
-      selectArray.push(parseInt(temp))
+      selectArray.push(temp)
     })
 
     // 删除选中的
+    store.delSelected(selectArray, function () {
+      checkboxs.closest('tr').remove()
+    })
   },
 
   renderItem: function () {
@@ -97,15 +103,13 @@ var PageList = PageBaseView.extend({
         container.append(tempItem.render().el)
       })
 
-    server.list({}, function (res) {
 
-      if (res.result.code !== 200) return
-
-      res.data.questionList.forEach(function (ele) {
+    store.list(function (data) {
+      console.log(data)
+      data.forEach(function (ele) {
         tempItem = new Item(ele)
         container.append(tempItem.render().el)
       })
-
     })
 
     return this
